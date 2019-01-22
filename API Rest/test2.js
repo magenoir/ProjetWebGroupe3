@@ -32,10 +32,14 @@ app.get('/name', function (req, res) {
 	});
 });
 
-app.get('/name/', function (req, res) {
-    bdd.query('select * from name', function (error, results, fields) {
-       if (error) throw error;
-       res.end(JSON.stringify(results));
-     });
- });
+ 
+app.post('/add/user/', function(req,res) {
+bdd.query('insert into name set ?',sql,function(error,results,fields){
+        if (error) throw error;
+        res.end(JSON.stringify(results));
+    });
+})
+
+
+
  

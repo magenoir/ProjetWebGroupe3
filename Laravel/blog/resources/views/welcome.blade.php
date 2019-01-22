@@ -1,21 +1,104 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <title>Titre</title>
-    <link rel="stylesheet" href="<?php echo asset('css/style.css')?>" type="text/css"> 
-</head>
+<!doctype html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>SITE du BDE CESI</title>
+
+        <!-- Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link rel="stylesheet" type="text/css" href="css/styleform.css">
+    </head>
     <body>
         <header>
-            <nav class="topnav">
-                <a class="active" href="#actu">Actualités</a> 
-                <a href="#event">Evénements</a>
-                <a href="#boite_à_idéee">Boite à idées</a>
-                <a href="#boutique">Boutique</a>
-            </nav>
+            <div class="topnav" id="myTopnav">
+              <a href="#home" class="active">
+                <img class="img" src="images/logo_cesi_1.png">
+              </a>
+              <input class="rech" type="text" placeholder="Search..">
+              <button class="button" onclick="document.getElementById('choice').style.display='block'" style="width:auto;">Connect</button>
+              <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
+            </div>
+            <div class="sidebar">
+              <a class="active" href="#home">Actualités</a>
+              <a href="#news">Événements</a>
+              <a href="#contact">Boite a Idées</a>
+              <a href="#about">Boutique</a>
+            </div>
         </header>
-        <section>
 
-        </section> 
+        <main>
+            <div id="choice" class="modal">
+                <form class="modal-content animate" action="">
+                    <div class="fcontainer">
+                      <span onclick="document.getElementById('choice').style.display='none'" class="close" title="Close Modal">&times;</span>
+                    </div>
+                    <div class="container" style="background-color:#f1f1f1">
+                      <button type="button" onclick="document.getElementById('choice').style.display='none', document.getElementById('inscrit').style.display='block'" class="choicebtn">S'inscrire</button>
+                    </div>
+                    <div class="container" style="background-color:#f1f1f1">
+                      <button type="button" onclick="document.getElementById('choice').style.display='none', document.getElementById('connect').style.display='block'" class="choicebtn">Connect</button>
+                    </div>
+                </form>
+            </div>
+
+            <div id="connect" class="modal">
+              <form class="modal-content animate" action="">
+                <div class="fcontainer">
+                  <span onclick="document.getElementById('connect').style.display='none'" class="close" title="Close Modal">&times;</span>
+                </div>
+                <div class="container">
+                  <label for="E-mail"><b>E-mail</b></label>
+                  <input class="con" type="text" placeholder="Enter E-mail" name="E-mail" required>
+
+                  <label for="psw"><b>Password</b></label>
+                  <input class="con" type="password" placeholder="Enter Password" name="psw" required>
+                    
+                  <button type="submit">Login</button>
+                </div>
+                <div class="container" style="background-color:#f1f1f1">
+                  <button type="button" onclick="document.getElementById('connect').style.display='none', document.getElementById('choice').style.display='block'" class="cancelbtn">Cancel</button>
+                  <span class="psw">Mot de passe oublié? <a href="#">Contactez le support.</a></span>
+                </div>
+              </form>
+            </div>
+
+            <div id="inscrit" class="modal">
+              <form class="modal-content animate" action="">
+                <div class="fcontainer">
+                  <span onclick="document.getElementById('inscrit').style.display='none'" class="close" title="Close Modal">&times;</span>
+                </div>
+                <div class="container">
+                  <label for="Name"><b>Name</b></label>
+                  <input class="ins" type="text" placeholder="Enter your Name" name="Name" required>
+
+                  <label for="FName"><b>First-Name</b></label>
+                  <input class="ins" type="text" placeholder="Enter your Name" name="FName" required>
+
+                  <label for="E-mail"><b>E-mail</b></label>
+                  <input class="ins" type="text" placeholder="Enter E-mail" name="E-mail" required>
+
+                  <label for="psw"><b>Password</b></label>
+                  <input class="ins" type="password" placeholder="Enter Password" name="psw" required>
+
+                  <label for="confpsw"><b>Confirm Password</b></label>
+                  <input class="ins" type="password" placeholder="Confirm Password" name="confpsw" required>
+                    
+                  <button type="submit">Create</button>
+                </div>
+                <div class="container" style="background-color:#f1f1f1">
+                  <button type="button" onclick="document.getElementById('inscrit').style.display='none', document.getElementById('choice').style.display='block'" class="cancelbtn">Cancel</button>
+                </div>
+              </form>
+            </div>
+        </main>
+
+        <footer>
+            
+        </footer>
+        <script type="text/javascript" src="js/responsive.js"></script>
+        <script type="text/javascript" src="js/form.js"></script>
     </body>
 </html>
