@@ -4,95 +4,71 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>SITE du BDE CESI</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
-
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link rel="stylesheet" type="text/css" href="css/styleform.css">
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
-
+        <header>
             <div class="content">
-                <div class="title m-b-md">
-                    Laravel
+                <div class="navbar" id="myNavbar">
+                    <a href="#home" class="active">Home</a>
+                    <input class="rech" type="text" placeholder="Search..">
+                    <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
+                    <button class="button" onclick="document.getElementById('connect').style.display='block'" style="width:auto;">Sign Up</button>
                 </div>
 
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                <div class="title m-b-md">
+                    CESI BDE
+                </div>
+
+                <div class="bar">
+                    <a href="">Actualités</a>
+                    <a href="">Événements</a>
+                    <a href="">Boite a idées</a>
+                    <a href="">Boutique</a>
                 </div>
             </div>
-        </div>
+        </header>
+
+        <main>
+            <div id="connect" class="formu" style="display : none;">
+              <span onclick="document.getElementById('connect').style.display='none'" class="close" title="Close Modal">&times;</span>
+              <form class="modal-content" action="/action_page.php">
+                <div class="container">
+                  <h1>Sign Up</h1>
+                  <p>Please fill in this form to create an account.</p>
+                  <hr>
+                  <label for="email"><b>Email</b></label>
+                  <input class="ins" type="text" placeholder="Enter Email" name="email" required>
+
+                  <label for="psw"><b>Password</b></label>
+                  <input class="ins" type="password" placeholder="Enter Password" name="psw" required>
+
+                  <label for="psw-repeat"><b>Confirmed Password</b></label>
+                  <input class="ins" type="password" placeholder="Repeat Password" name="psw-repeat" required>
+                  
+                  <label>
+                    <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
+                  </label>
+
+                  <div class="clearfix">
+                    <button type="button" onclick="document.getElementById('connect').style.display='none'" class="cancelbtn">Cancel</button>
+                    <button type="submit" class="signupbtn">Sign Up</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+        </main>
+
+        <footer>
+            
+        </footer>
+        <script type="text/javascript" src="js/responsive.js"></script>
+        <script type="text/javascript" src="js/form.js"></script>
+
     </body>
 </html>
