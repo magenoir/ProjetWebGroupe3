@@ -13,21 +13,19 @@
     </head>
     <body>
         <header>
-            <div class="content">
-                <div class="navbar" id="myNavbar">
-                    <a href="#home" class="active">
-                        <img src="images/logo_cesi_1.png">
-                    </a>
-                    <input class="rech" type="text" placeholder="Search..">
-                    <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
-                    <button class="button" onclick="document.getElementById('choice').style.display='block'" style="width:auto;">Connect</button>
-                </div>
-                <div class="bar">
-                    <a href="">Actualités</a>
-                    <a href="">Événements</a>
-                    <a href="">Boite a idées</a>
-                    <a href="">Boutique</a>
-                </div>
+            <div class="topnav" id="myTopnav">
+              <a href="#home" class="active">
+                <img class="img" src="images/logo_cesi_1.png">
+              </a>
+              <input class="rech" type="text" placeholder="Search..">
+              <button class="button" onclick="document.getElementById('choice').style.display='block'" style="width:auto;">Connect</button>
+              <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
+            </div>
+            <div class="sidebar">
+              <a class="active" href="#home">Actualités</a>
+              <a href="#news">Événements</a>
+              <a href="#contact">Boite a Idées</a>
+              <a href="#about">Boutique</a>
             </div>
         </header>
 
