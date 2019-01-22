@@ -32,6 +32,19 @@ myRouter.route('/')
     res.json({message : "Bienvenue aux bgs comme Félix", methode : req.method});
 })
 
+myRouter.route('/bg/:bg_id')
+.get(function(req,res){
+    res.json({message : "Vous souhaitez accéder aux informations du bg semblabe à Félix n°" + req.params.bg_id});
+})
+
+.put(function(req,res){
+    res.json({message : "Vous souhaitez faire une modification sur les informations du bg n°"+req.params.bg_id});
+})
+
+.delete(function(req,res){
+    res.json({message :"Vous souhaitez supprimer les informations du bg semblabe à Félix n°"+req.params.bg_id })
+})
+
 app.use(myRouter);
 
 app.listen(port,hostname, function() {
