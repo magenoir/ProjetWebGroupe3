@@ -15,16 +15,13 @@
         <header>
             <div class="content">
                 <div class="navbar" id="myNavbar">
-                    <a href="#home" class="active">Home</a>
+                    <a href="#home" class="active">
+                        <img src="images/logo_cesi_1.png">
+                    </a>
                     <input class="rech" type="text" placeholder="Search..">
                     <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
-                    <button class="button" onclick="document.getElementById('connect').style.display='block'" style="width:auto;">Sign Up</button>
+                    <button class="button" onclick="document.getElementById('choice').style.display='block'" style="width:auto;">Connect</button>
                 </div>
-
-                <div class="title m-b-md">
-                    CESI BDE
-                </div>
-
                 <div class="bar">
                     <a href="">Actualités</a>
                     <a href="">Événements</a>
@@ -35,30 +32,66 @@
         </header>
 
         <main>
-            <div id="connect" class="formu" style="display : none;">
-              <span onclick="document.getElementById('connect').style.display='none'" class="close" title="Close Modal">&times;</span>
-              <form class="modal-content" action="/action_page.php">
+            <div id="choice" class="modal">
+                <form class="modal-content animate" action="">
+                    <div class="fcontainer">
+                      <span onclick="document.getElementById('choice').style.display='none'" class="close" title="Close Modal">&times;</span>
+                    </div>
+                    <div class="container" style="background-color:#f1f1f1">
+                      <button type="button" onclick="document.getElementById('choice').style.display='none', document.getElementById('inscrit').style.display='block'" class="choicebtn">S'inscrire</button>
+                    </div>
+                    <div class="container" style="background-color:#f1f1f1">
+                      <button type="button" onclick="document.getElementById('choice').style.display='none', document.getElementById('connect').style.display='block'" class="choicebtn">Connect</button>
+                    </div>
+                </form>
+            </div>
+
+            <div id="connect" class="modal">
+              <form class="modal-content animate" action="">
+                <div class="fcontainer">
+                  <span onclick="document.getElementById('connect').style.display='none'" class="close" title="Close Modal">&times;</span>
+                </div>
                 <div class="container">
-                  <h1>Sign Up</h1>
-                  <p>Please fill in this form to create an account.</p>
-                  <hr>
-                  <label for="email"><b>Email</b></label>
-                  <input class="ins" type="text" placeholder="Enter Email" name="email" required>
+                  <label for="E-mail"><b>E-mail</b></label>
+                  <input class="con" type="text" placeholder="Enter E-mail" name="E-mail" required>
+
+                  <label for="psw"><b>Password</b></label>
+                  <input class="con" type="password" placeholder="Enter Password" name="psw" required>
+                    
+                  <button type="submit">Login</button>
+                </div>
+                <div class="container" style="background-color:#f1f1f1">
+                  <button type="button" onclick="document.getElementById('connect').style.display='none', document.getElementById('choice').style.display='block'" class="cancelbtn">Cancel</button>
+                  <span class="psw">Mot de passe oublié? <a href="#">Contactez le support.</a></span>
+                </div>
+              </form>
+            </div>
+
+            <div id="inscrit" class="modal">
+              <form class="modal-content animate" action="">
+                <div class="fcontainer">
+                  <span onclick="document.getElementById('inscrit').style.display='none'" class="close" title="Close Modal">&times;</span>
+                </div>
+                <div class="container">
+                  <label for="Name"><b>Name</b></label>
+                  <input class="ins" type="text" placeholder="Enter your Name" name="Name" required>
+
+                  <label for="FName"><b>First-Name</b></label>
+                  <input class="ins" type="text" placeholder="Enter your Name" name="FName" required>
+
+                  <label for="E-mail"><b>E-mail</b></label>
+                  <input class="ins" type="text" placeholder="Enter E-mail" name="E-mail" required>
 
                   <label for="psw"><b>Password</b></label>
                   <input class="ins" type="password" placeholder="Enter Password" name="psw" required>
 
-                  <label for="psw-repeat"><b>Confirmed Password</b></label>
-                  <input class="ins" type="password" placeholder="Repeat Password" name="psw-repeat" required>
-                  
-                  <label>
-                    <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
-                  </label>
-
-                  <div class="clearfix">
-                    <button type="button" onclick="document.getElementById('connect').style.display='none'" class="cancelbtn">Cancel</button>
-                    <button type="submit" class="signupbtn">Sign Up</button>
-                  </div>
+                  <label for="confpsw"><b>Confirm Password</b></label>
+                  <input class="ins" type="password" placeholder="Confirm Password" name="confpsw" required>
+                    
+                  <button type="submit">Create</button>
+                </div>
+                <div class="container" style="background-color:#f1f1f1">
+                  <button type="button" onclick="document.getElementById('inscrit').style.display='none', document.getElementById('choice').style.display='block'" class="cancelbtn">Cancel</button>
                 </div>
               </form>
             </div>
@@ -69,6 +102,5 @@
         </footer>
         <script type="text/javascript" src="js/responsive.js"></script>
         <script type="text/javascript" src="js/form.js"></script>
-
     </body>
 </html>
