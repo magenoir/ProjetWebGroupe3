@@ -25,3 +25,11 @@ window.onclick = function(event) {
   }
 }
 
+function capaTextarea(caractextarea,maxcarac){
+  if (caractextarea.value.length > maxcarac) {
+    caractextarea.value = caractextarea.value.substring(0, maxcarac);
+    alert('Votre texte ne doit pas dépasser '+maxcarac+' caractères!');
+   }
+}
+
+

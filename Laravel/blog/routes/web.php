@@ -15,6 +15,22 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::post('/', function () {
+    return 'formulaire reçu';
+});
+
 Route::get('/boutique', function () {
     return view('boutique');
+});
+
+Route::get('/événement', function () {
+    return view('evenement');
+});
+
+Route::get('/boite_idee', function () {
+    return view('boite_idées');
+});
+
+Route::post('/boite_idee', function () {
+    return 'formulaire reçu';
 });

@@ -1,5 +1,5 @@
 @include('header')
-        <main>
+        
             <div class="w3-content w3-display-container" style="max-width:100%">
               <img class="mySlides" src="images/goodies 1.jpg" style="width:100px, height:100px">
               <img class="mySlides" src="images/cesi logo 2.jpg" style="width:100px, height:100px">
@@ -14,13 +14,15 @@
             </div>
 
 
-            <div class="article">
-              <div class="event">
-                <h2>TITLE Event</h2>
-                <div class="champs" style="height:200px;">Image</div>
-                <p>Some text..</p>
-                <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
-              </div>
+            <div class="evenement">
+              <img src="images/evenement.jpg" alt="Avatar" style="width:90px">
+              <p><span>Événement 1</span>Lan CS GO</p>
+              <p>un tournois counter strike global offensive est organiser par Exia Lan.</p>
             </div>
-        </main>
+            <div class="evenement">
+              <img src="images/evenement.jpg" alt="Avatar" style="width:90px">
+              <p><span>Événement 1</span>Lan CS GO</p>
+              <p>un tournois counter strike global offensive est organiser par Exia Lan.</p>
+            </div>
+        
 @include('footer')

@@ -1,5 +1,9 @@
 body {margin:0;font-family:Arial}
 
+main {
+  background-color: #ddd;
+}
+
 .topnav {
   overflow: hidden;
   background-color: #0F547A;
@@ -141,37 +145,97 @@ div.content {
   
 }
 
-.article {  
-  display: flex;
-  flex-wrap: wrap;
-}
-
-/* Main column */
-.event {   
-  -ms-flex: 70%; /* IE10 */
-  flex: 70%;
-  background-color: #ccc;
-  border-radius: 1em;
-  padding: 20px;
-}
-
-/* Fake image, just for this example */
-.champs {
-  background-color: #aaa;
-  width: 100%;
-  padding: 20px;
+footer {
+    display:block;
+    font-size: 80%;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    height: 2em;
+    font-size: 0.75em;
+    background-color: #0F547A;
+    margin-bottom: 0;
+    font-weight: bold;
 }
 
 /* Footer */
-.footer {
-  padding: 20px;
-  text-align: center;
-  background: #0F547A;
+footer.footer {
+  float: right;
+  color: : #fff;
+  
 }
 
-/* Responsive layout - when the screen is less than 700px wide, make the two columns stack on top of each other instead of next to each other */
-@media screen and (max-width: 700px) {
-  .article {   
-    flex-direction: column;
+.footer p{
+  color: white;
+}
+
+.fa {
+  padding: 20px;
+  font-size: 30px;
+  width: auto;
+  height: auto;
+  text-align: center;
+  text-decoration: none;
+  margin: 0px 0px;
+  border-radius: 50%;
+}
+
+.fa:hover {
+    opacity: 0.7;
+}
+
+.fa-facebook {
+  background: #3B5998;
+  color: white;
+  float: right;
+}
+
+.fa-twitter {
+  background: #55ACEE;
+  color: white;
+  float: right;
+}
+
+.fa-linkedin {
+  background: #007bb5;
+  color: white;
+  float: right;
+}
+
+/*event*/
+
+.evenement {
+  border: 2px solid #ccc;
+  background-color: #eee;
+  border-radius: 5px;
+  padding: 16px;
+  margin: 16px 0
+}
+
+.evenement::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.evenement img {
+  float: left;
+  margin-right: 20px;
+  border-radius: 50%;
+}
+
+.evenement span {
+  font-size: 20px;
+  margin-right: 15px;
+}
+
+@media (max-width: 500px) {
+  .evenement {
+      text-align: center;
+  }
+  .evenement img {
+      margin: auto;
+      float: none;
+      display: block;
   }
 }

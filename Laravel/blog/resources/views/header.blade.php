@@ -26,13 +26,12 @@
               <input id="rech" class="search" type="text" placeholder="Search..">
             </div>
             <div class="sidebar">
-              <a class="active" href="#home">Actualités</a>
-              <a href="#news">Événements</a>
-              <a href="#contact">Boite a Idées</a>
+              <a class="active" href="/">Actualités</a>
+              <a href="événement">Événements</a>
+              <a href="boite_idee">Boite a Idées</a>
               <a href="boutique">Boutique</a>
             </div>
             <div id="choice" class="modal">
-                <form class="modal-content animate" action="">
                     <div class="fcontainer">
                       <span onclick="document.getElementById('choice').style.display='none'" class="close" title="Close Modal">&times;</span>
                     </div>
@@ -42,11 +41,10 @@
                     <div class="container" style="background-color:#f1f1f1">
                       <button type="button" onclick="document.getElementById('choice').style.display='none', document.getElementById('connect').style.display='block'" class="choicebtn">Connect</button>
                     </div>
-                </form>
             </div>
 
             <div id="connect" class="modal">
-              <form class="modal-content animate" action="">
+              <form class="modal-content animate" method="GET" action="/">
                 <div class="fcontainer">
                   <span onclick="document.getElementById('connect').style.display='none'" class="close" title="Close Modal">&times;</span>
                 </div>
@@ -67,7 +65,8 @@
             </div>
 
             <div id="inscrit" class="modal">
-              <form class="modal-content animate" action="">
+              <form class="modal-content animate" method="POST" action="/">
+                @csrf
                 <div class="fcontainer">
                   <span onclick="document.getElementById('inscrit').style.display='none'" class="close" title="Close Modal">&times;</span>
                 </div>
@@ -95,3 +94,4 @@
               </form>
             </div>
         </header>
+        <main>
