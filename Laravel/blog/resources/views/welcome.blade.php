@@ -1,104 +1,26 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <title>SITE du BDE CESI</title>
-
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
-        <link rel="stylesheet" type="text/css" href="css/style.css">
-        <link rel="stylesheet" type="text/css" href="css/styleform.css">
-    </head>
-    <body>
-        <header>
-            <div class="topnav" id="myTopnav">
-              <a href="#home" class="active">
-                <img class="img" src="images/logo_cesi_1.png">
-              </a>
-              <input class="rech" type="text" placeholder="Search..">
-              <button class="button" onclick="document.getElementById('choice').style.display='block'" style="width:auto;">Connect</button>
-              <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
-            </div>
-            <div class="sidebar">
-              <a class="active" href="#home">Actualités</a>
-              <a href="#news">Événements</a>
-              <a href="#contact">Boite a Idées</a>
-              <a href="#about">Boutique</a>
-            </div>
-        </header>
-
+@include('header')
         <main>
-            <div id="choice" class="modal">
-                <form class="modal-content animate" action="">
-                    <div class="fcontainer">
-                      <span onclick="document.getElementById('choice').style.display='none'" class="close" title="Close Modal">&times;</span>
-                    </div>
-                    <div class="container" style="background-color:#f1f1f1">
-                      <button type="button" onclick="document.getElementById('choice').style.display='none', document.getElementById('inscrit').style.display='block'" class="choicebtn">S'inscrire</button>
-                    </div>
-                    <div class="container" style="background-color:#f1f1f1">
-                      <button type="button" onclick="document.getElementById('choice').style.display='none', document.getElementById('connect').style.display='block'" class="choicebtn">Connect</button>
-                    </div>
-                </form>
+            <div class="w3-content w3-display-container" style="max-width:100%">
+              <img class="mySlides" src="images/goodies 1.jpg" style="width:100px, height:100px">
+              <img class="mySlides" src="images/cesi logo 2.jpg" style="width:100px, height:100px">
+              <img class="mySlides" src="images/evenement.jpg" style="width:100px, height:100px">
+              <div class="w3-center w3-container w3-section w3-large w3-text-white w3-display-bottommiddle" style="width:100%">
+                <div class="w3-left w3-hover-text-khaki" onclick="plusDivs(-1)">&#10094;</div>
+                <div class="w3-right w3-hover-text-khaki" onclick="plusDivs(1)">&#10095;</div>
+                <span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(1)"></span>
+                <span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(2)"></span>
+                <span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(3)"></span>
+              </div>
             </div>
 
-            <div id="connect" class="modal">
-              <form class="modal-content animate" action="">
-                <div class="fcontainer">
-                  <span onclick="document.getElementById('connect').style.display='none'" class="close" title="Close Modal">&times;</span>
-                </div>
-                <div class="container">
-                  <label for="E-mail"><b>E-mail</b></label>
-                  <input class="con" type="text" placeholder="Enter E-mail" name="E-mail" required>
 
-                  <label for="psw"><b>Password</b></label>
-                  <input class="con" type="password" placeholder="Enter Password" name="psw" required>
-                    
-                  <button type="submit">Login</button>
-                </div>
-                <div class="container" style="background-color:#f1f1f1">
-                  <button type="button" onclick="document.getElementById('connect').style.display='none', document.getElementById('choice').style.display='block'" class="cancelbtn">Cancel</button>
-                  <span class="psw">Mot de passe oublié? <a href="#">Contactez le support.</a></span>
-                </div>
-              </form>
-            </div>
-
-            <div id="inscrit" class="modal">
-              <form class="modal-content animate" action="">
-                <div class="fcontainer">
-                  <span onclick="document.getElementById('inscrit').style.display='none'" class="close" title="Close Modal">&times;</span>
-                </div>
-                <div class="container">
-                  <label for="Name"><b>Name</b></label>
-                  <input class="ins" type="text" placeholder="Enter your Name" name="Name" required>
-
-                  <label for="FName"><b>First-Name</b></label>
-                  <input class="ins" type="text" placeholder="Enter your Name" name="FName" required>
-
-                  <label for="E-mail"><b>E-mail</b></label>
-                  <input class="ins" type="text" placeholder="Enter E-mail" name="E-mail" required>
-
-                  <label for="psw"><b>Password</b></label>
-                  <input class="ins" type="password" placeholder="Enter Password" name="psw" required>
-
-                  <label for="confpsw"><b>Confirm Password</b></label>
-                  <input class="ins" type="password" placeholder="Confirm Password" name="confpsw" required>
-                    
-                  <button type="submit">Create</button>
-                </div>
-                <div class="container" style="background-color:#f1f1f1">
-                  <button type="button" onclick="document.getElementById('inscrit').style.display='none', document.getElementById('choice').style.display='block'" class="cancelbtn">Cancel</button>
-                </div>
-              </form>
+            <div class="article">
+              <div class="event">
+                <h2>TITLE Event</h2>
+                <div class="champs" style="height:200px;">Image</div>
+                <p>Some text..</p>
+                <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+              </div>
             </div>
         </main>
-
-        <footer>
-            
-        </footer>
-        <script type="text/javascript" src="js/responsive.js"></script>
-        <script type="text/javascript" src="js/form.js"></script>
-    </body>
-</html>
+@include('footer')
