@@ -1,0 +1,234 @@
+#------------------------------------------------------------
+#        Script MySQL.
+#------------------------------------------------------------
+
+CREATE DATABASE bddpw;
+USE bddpw;
+
+#------------------------------------------------------------
+# Table: Center
+#------------------------------------------------------------
+
+CREATE TABLE Center(
+        Id_center   Int  Auto_increment  NOT NULL ,
+        center_name Varchar (50) NOT NULL
+	,CONSTRAINT Center_PK PRIMARY KEY (Id_center)
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: Profile
+#------------------------------------------------------------
+
+CREATE TABLE Profile(
+        Id_profile   Int  Auto_increment  NOT NULL ,
+        name_profile Char (50) NOT NULL
+	,CONSTRAINT Profile_PK PRIMARY KEY (Id_profile)
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: User
+#------------------------------------------------------------
+
+CREATE TABLE User(
+        id_user                Int  Auto_increment  NOT NULL ,
+        user_name              Varchar (50) NOT NULL ,
+        user_firstname         Varchar (50) NOT NULL ,
+        user_mail              Varchar (50) NOT NULL ,
+        user_password          Varchar (50) NOT NULL ,
+        user_connection_status Bool NOT NULL ,
+        Id_center              Int NOT NULL ,
+        Id_profile             Int NOT NULL
+	,CONSTRAINT User_PK PRIMARY KEY (id_user)
+
+	,CONSTRAINT User_Center_FK FOREIGN KEY (Id_center) REFERENCES Center(Id_center)
+	,CONSTRAINT User_Profile0_FK FOREIGN KEY (Id_profile) REFERENCES Profile(Id_profile)
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: Status_event
+#------------------------------------------------------------
+
+CREATE TABLE Status_event(
+        id_status   Int  Auto_increment  NOT NULL ,
+        name_status Char (5) NOT NULL
+	,CONSTRAINT Status_event_PK PRIMARY KEY (id_status)
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: Event
+#------------------------------------------------------------
+
+CREATE TABLE Event(
+        id_event          Int  Auto_increment  NOT NULL ,
+        event_name        Varchar (50) NOT NULL ,
+        event_description Varchar (250) NOT NULL ,
+        event_date        Date NOT NULL ,
+        event_location    Varchar (250) NOT NULL ,
+        id_user           Int NOT NULL ,
+        id_status         Int NOT NULL
+	,CONSTRAINT Event_PK PRIMARY KEY (id_event)
+
+	,CONSTRAINT Event_User_FK FOREIGN KEY (id_user) REFERENCES User(id_user)
+	,CONSTRAINT Event_Status_event0_FK FOREIGN KEY (id_status) REFERENCES Status_event(id_status)
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: Category_product
+#------------------------------------------------------------
+
+CREATE TABLE Category_product(
+        id_category Int  Auto_increment  NOT NULL ,
+        name_status Char (5) NOT NULL
+       ,CONSTRAINT Category_product_PK PRIMARY KEY (id_category)
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: Product
+#------------------------------------------------------------
+
+CREATE TABLE Product(
+        id_product           Int  Auto_increment  NOT NULL ,
+        product_name         Varchar (250) NOT NULL ,
+        product_description  Varchar (250) NOT NULL ,
+        product_price        DECIMAL (15,3)  NOT NULL ,
+        product_root_picture Varchar (250) NOT NULL ,
+        id_category          Int NOT NULL
+	,CONSTRAINT Product_PK PRIMARY KEY (id_product)
+	,CONSTRAINT Product_Category_product_FK FOREIGN KEY (id_category) REFERENCES Category_product(id_category)
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: Picture
+#------------------------------------------------------------
+
+CREATE TABLE Picture(
+        id_picture   Int  Auto_increment  NOT NULL ,
+        picture_root Varchar (50) NOT NULL ,
+        id_user      Int NOT NULL ,
+        id_product   Int
+	,CONSTRAINT Picture_PK PRIMARY KEY (id_picture)
+
+	,CONSTRAINT Picture_User_FK FOREIGN KEY (id_user) REFERENCES User(id_user)
+	,CONSTRAINT Picture_Product0_FK FOREIGN KEY (id_product) REFERENCES Product(id_product)
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: Command_status
+#------------------------------------------------------------
+
+CREATE TABLE Command_status(
+        id_status   Int  Auto_increment  NOT NULL ,
+        name_status Char (50) NOT NULL
+	,CONSTRAINT Command_status_PK PRIMARY KEY (id_status)
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: Command
+#------------------------------------------------------------
+
+CREATE TABLE Command(
+        id_command   Int  Auto_increment  NOT NULL ,
+        command_date Date NOT NULL ,
+        command_hour Time NOT NULL ,
+        id_user      Int NOT NULL ,
+        id_status    Int NOT NULL
+	,CONSTRAINT Command_PK PRIMARY KEY (id_command)
+
+	,CONSTRAINT Command_User_FK FOREIGN KEY (id_user) REFERENCES User(id_user)
+	,CONSTRAINT Command_Command_status0_FK FOREIGN KEY (id_status) REFERENCES Command_status(id_status)
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: Contenir
+#------------------------------------------------------------
+
+CREATE TABLE Contenir(
+        id_product Int NOT NULL ,
+        id_command Int NOT NULL ,
+        quantite   Int NOT NULL	
+	, CONSTRAINT Contenir_PK PRIMARY KEY (id_product,id_command)
+	,CONSTRAINT Contenir_Product_FK FOREIGN KEY (id_product) REFERENCES Product(id_product)
+	,CONSTRAINT Contenir_Command0_FK FOREIGN KEY (id_command) REFERENCES Command(id_command)
+)ENGINE=InnoDB;
+
+
+
+#------------------------------------------------------------
+# Table: Liker_event
+#------------------------------------------------------------
+
+CREATE TABLE Liker_event(
+	id_event Int NOT NULL ,
+	id_user Int NOT NULL 
+	, CONSTRAINT Liker_event_PK PRIMARY KEY (id_event,id_user)
+	, CONSTRAINT Liker_event_Event_FK FOREIGN KEY (id_event) REFERENCES Event(id_event)
+	, CONSTRAINT Liker_event_USER_FK FOREIGN KEY (id_user) REFERENCES User(id_user)
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: Liker_picture
+#------------------------------------------------------------
+
+CREATE TABLE Liker_picture(
+	id_picture Int NOT NULL ,
+	id_user Int NOT NULL 
+	, CONSTRAINT Liker_picture_PK PRIMARY KEY (id_picture,id_user)
+	, CONSTRAINT Liker_pictre_Picture_FK FOREIGN KEY (id_picture) REFERENCES Picture(id_picture)
+	, CONSTRAINT Liker_picture_USER_FK FOREIGN KEY (id_user) REFERENCES User(id_user)
+)ENGINE=InnoDB;
+
+
+
+
+#------------------------------------------------------------
+# Table: Illustrer
+#------------------------------------------------------------
+
+CREATE TABLE Illustrer(
+	id_picture Int NOT NULL ,
+	id_event Int NOT NULL 
+	, CONSTRAINT Illustrer_PK PRIMARY KEY (id_picture,id_event)
+	, CONSTRAINT Illustrer_Picture_FK FOREIGN KEY (id_picture) REFERENCES Picture(id_picture)
+	, CONSTRAINT Illustrer_Event_FK FOREIGN KEY (id_event) REFERENCES Event(id_event)
+)ENGINE=InnoDB;
+
+
+
+#------------------------------------------------------------
+# Table: Commenter
+#------------------------------------------------------------
+
+CREATE TABLE Commenter(
+	id_picture Int NOT NULL ,
+	id_user Int NOT NULL ,
+	comment LONGTEXT ,
+	date_comment DATE ,
+	hour_comment TIME
+	, CONSTRAINT Commenter_PK PRIMARY KEY (id_picture,id_user)
+	, CONSTRAINT Commenter_Picture_FK FOREIGN KEY (id_picture) REFERENCES Picture(id_picture)
+	, CONSTRAINT Commenter_User_FK FOREIGN KEY (id_user) REFERENCES User(id_user)
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: S_inscrire
+#------------------------------------------------------------
+
+CREATE TABLE S_inscrire(
+	id_user Int NOT NULL ,
+	id_event Int NOT NULL 
+	, CONSTRAINT S_inscrire_PK PRIMARY KEY (id_user,id_event)
+	, CONSTRAINT S_inscrire_User_FK FOREIGN KEY (id_user) REFERENCES User(id_user)
+	, CONSTRAINT S_inscrire_Event_FK FOREIGN KEY (id_event) REFERENCES Event(id_event)
+)ENGINE=InnoDB;
