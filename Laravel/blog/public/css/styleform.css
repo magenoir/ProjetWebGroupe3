@@ -79,8 +79,7 @@ span.psw {
   border: 1px solid #888;
   width: 80%; 
 
-/* The Close Button (x) */
-.close {
+.close{
   position: absolute;
   right: 25px;
   top: 0;

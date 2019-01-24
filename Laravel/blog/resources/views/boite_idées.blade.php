@@ -20,7 +20,7 @@
 </style>
 
 
-<form class="modal-content animate" method="POST" action="/boite_idée">
+<form class="modal-content animate" method="POST" action="/boite_idee">
 	@csrf
 	<div class="contient">
     	<label for="Name"><b>Name</b></label>
@@ -37,19 +37,19 @@
 </form>
 
 <div class="evenement">
-	<img src="images/evenement.jpg" alt="Avatar" style="width:90px">
+	<img src="images/evenement.jpg" alt="Avatar" >
 	<p><span>Événement 2</span>Rôle play</p>
 	<p>Une soirée JDR est organiser par l'association Role Exia</p>
 </div>
 
 <div class="evenement">
-  <img src="images/evenement.jpg" alt="Avatar" style="width:90px">
+  <img src="images/evenement.jpg" alt="Avatar" >
   <p><span>Événement 1</span>Lan CS GO</p>
   <p>un tournois counter strike global offensive est organiser par Exia Lan.</p>
 </div>
 
 <div class="evenement">
-	<img src="images/evenement.jpg" alt="Avatar" style="width:90px">
+	<img src="images/evenement.jpg" alt="Avatar" >
 	<p><span>Événement 2</span>Rôle play</p>
 	<p>Une soirée JDR est organiser par l'association Role Exia</p>
 </div>

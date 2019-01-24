@@ -23,19 +23,16 @@
               </a>
               <button class="button" onclick="document.getElementById('choice').style.display='block'" style="width:auto;">Connect</button>
               <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
-              <input id="rech" class="search" type="text" placeholder="Search..">
             </div>
             <div class="sidebar">
-              <a class="active" href="/">Actualités</a>
+              <a href="/">Actualités</a>
               <a href="événement">Événements</a>
               <a href="boite_idee">Boite a Idées</a>
               <a href="boutique">Boutique</a>
             </div>
             <div id="choice" class="modal">
-                    <div class="fcontainer">
-                      <span onclick="document.getElementById('choice').style.display='none'" class="close" title="Close Modal">&times;</span>
-                    </div>
                     <div class="container" style="background-color:#f1f1f1">
+                      <span onclick="document.getElementById('choice').style.display='none'" class="close" title="Close Modal">&times;</span>
                       <button type="button" onclick="document.getElementById('choice').style.display='none', document.getElementById('inscrit').style.display='block'" class="choicebtn">S'inscrire</button>
                     </div>
                     <div class="container" style="background-color:#f1f1f1">

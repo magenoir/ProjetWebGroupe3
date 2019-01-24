@@ -19,6 +19,14 @@ Route::post('/', function () {
     return 'formulaire reçu';
 });
 
+Route::get('/boite_idee', function () {
+    return view('boite_idées');
+});
+
+Route::post('/boite_idee', function () {
+    return $_POST['Name']." ".$_POST['FName']." devient un ".$_POST['Desc'];
+});
+
 Route::get('/boutique', function () {
     return view('boutique');
 });
@@ -27,10 +35,4 @@ Route::get('/événement', function () {
     return view('evenement');
 });
 
-Route::get('/boite_idee', function () {
-    return view('boite_idées');
-});
 
-Route::post('/boite_idee', function () {
-    return 'formulaire reçu';
-});
