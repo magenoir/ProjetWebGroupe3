@@ -7,7 +7,7 @@ const jwt = require('jsonwebtoken');
 const jwtVerifer = require('express-jwt');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
-    extended: false
+    extended: true
 }));
 
 const user = {email: 'truc@gmail.com', password: 1234};
@@ -32,7 +32,7 @@ var bdd = mysql.createConnection({
     host : 'localhost',
     user : 'root',
     password : 'root',
-    database : 'web_project'
+    database : 'bddpw'
 });
 // Test de la connection
 bdd.connect(function(err) {
@@ -57,6 +57,15 @@ app.get('/api/user/:id', function (req, res) {
 
     });
  });
+
+ app.get('/api/user', function (req, res) {
+    bdd.query('select * from user where user_name = ? and user_mail = ?',[req.body.user_name, req.body.user_mail], function (error, results, fields) {
+       if (error) res.status(500).send("There was a problem finding the information about the user you want");
+       res.send(JSON.stringify(results));
+       res.end();
+
+    });
+ });
  
 app.post('/api/user/:name/:firstname/', function(req,res) {
     var sql = {nom: req.params.name, prenom: req.params.firstname};
@@ -67,7 +76,7 @@ app.post('/api/user/:name/:firstname/', function(req,res) {
     });    
 })
 
-app.post('/api/user/', function(req,res) { 
+app.post('/api/user/az/', function(req,res) { 
         bdd.query('insert into utilisateur set nom=?, prenom =? ',[req.body.nom, req.body.prenom],function(error,results,fields){
         if (error) throw error;
         res.status(200).send("Success !")
@@ -76,12 +85,20 @@ app.post('/api/user/', function(req,res) {
 })
 
 app.post('/api/user/', function(req,res) { 
-    bdd.query('insert into bddwp set nom=?, prenom =? ',[req.body.nom, req.body.prenom],function(error,results,fields){
+    bdd.query('insert into user set user_name= ?, user_firstname= ?, user_mail= ?, user_password= ?, Id_center= ?',[
+        req.body.user_name,
+        req.body.user_firstname,
+        req.body.user_mail,
+        req.body.user_password,
+        req.body.Id_center
+        ],function(error,results,fields){
     if (error) throw error;
     res.status(200).send("Success !")
     res.end();
 });    
 })
+
+
 
 app.delete('/api/user/:id', function(req,res){
     bdd.query('delete from user where idname = ? ',[req.params.id], function(error, results, fields){
@@ -126,6 +143,20 @@ app.get('/api/event/:id', function (req, res) {
         res.status(200).send("Success !")
         res.end();
     });    
+})
+
+app.post('/api/event/', function(req,res) { 
+    bdd.query('insert into event set event_name= ?, event_description= ?,event_date = ?, event_location= ?, id_user= ?',[
+        req.body.event_name,
+        req.body.event_description,
+        req.body.event_date,
+        req.body.event_location,
+        req.body.id_user
+        ],function(error,results,fields){
+    if (error) throw error;
+    res.status(200).send("Success !")
+    res.end();
+});    
 })
 
 app.delete('/api/event/:id', function(req,res){
