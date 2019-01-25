@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
 
 Route::post('/', function () {
-    return 'formulaire reçu';
+    return 'formulaire de '.$_POST['Name'];
 });
 
 Route::get('/boite_idee', function () {

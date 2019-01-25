@@ -77,6 +77,14 @@
                   <label for="E-mail"><b>E-mail</b></label>
                   <input class="ins" type="text" placeholder="Enter E-mail" name="E-mail" required>
 
+                  <label for="Center"><b>Centre</b></label>
+                  <select class="ins" name="Center" required>
+                      <option class="ins" value="Arras">Arras</option>
+                      <option class="ins" value="Lille">Lille</option>
+                      <option class="ins" value="Reims">Reims</option>
+                      <option class="ins" value="Strasbourg">Strasbourg</option>
+                  </select>
+
                   <label for="psw"><b>Password</b></label>
                   <input class="ins" type="password" placeholder="Enter Password" name="psw" required>
 
