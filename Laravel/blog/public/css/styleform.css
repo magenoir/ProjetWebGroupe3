@@ -111,7 +111,7 @@ span.psw {
 }
 
 /* Change styles for span and cancel button on extra small screens */
-@media screen and (max-width: 300px) {
+@media screen and (max-width: 600px) {
   span.psw {
      display: block;
      float: none;
@@ -121,13 +121,8 @@ span.psw {
      display: block;
      float: none;
   }
-  .ins, .con {
+  option{
   width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #999;
-  border-radius: 0.2em;
-  box-sizing: border-box;
+  height: auto;
 }
 }
