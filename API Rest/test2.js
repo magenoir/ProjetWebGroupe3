@@ -9,14 +9,24 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true
 }));
-
-const user = {email:"", password: 1234};
-const secret = 'secret';
 var token = null;
+var secret = "secret";
+const user = {email:"", password: 0};
+
 function createToken(){
     let expirationDate = Math.floor(Date.now() / 1000) + 60*30
     var token = jwt.sign({userID: user.email, exp: expirationDate}, secret);
     return token;  
+}
+
+function createEvent(){
+    bdd.query('select id_user from bddpw.user where user_name = ? and user_firstname = ?',[req.body.user_name,req.body.user_firstname], function(error , results, fields){
+        iduser = results;
+        console.log(iduser);      
+    })
+  /*  bdd.query('insert into event set ?', [req.body.id_user == iduser, req.event_description],function(error,results,fields){
+        if(error) res.send('There was a problem adding the event')
+    })*/
 }
 
 
@@ -34,48 +44,77 @@ var bdd = mysql.createConnection({
     password : 'root',
     database : 'bddpw'
 });
+
 // Test de la connection
 bdd.connect(function(err) {
     if(err) throw err;
-    console.log('Connected ...')
+    console.log('Connected ...');
 })
 
+app.post('/api/idea/',function(req,res){
+    bdd.query('select id_user from bddpw.user where user_name=? and user_firstname =?',[req.body.user_name,req.body.user_firstname],function(error , results, fields){
+        if(error) send(error);
+       // iduser = results;
+        //console.log(iduser);   
+        res.send(results);   
+    });
+});
+
 app.post('/api/login', function(req,res){
+    
     bdd.query('select user_mail from bddpw.user where user_mail = ?',[req.body.user_mail], function( error,results,fields){
         if (error) res.send("There was a problem finding the information about the user you want");
-       
-       user.user_mail = results;
+        if(req.body.user_mail == null){
+            res.send("user not found");
+        } 
+        user.email = results;
 
         
  })
     bdd.query('select user_password from bddpw.user where user_password = ?',[req.body.user_password], function( error,results,fields){
                 if (error) res.send("There was a problem finding the information about the user you want");
-                user.user_password = results;
-                
+                if(req.body.user_password == null){
+                    res.send("Wrong password or it doesnt exist")
+                }else {
+                    user.password = results;
+                    var token = null;
+                    res.send(createToken()+" use it as a secret : ");
+                }          
     })
-    
 })
+
 // Gestion des utilisateurs par les méthodes http	
-app.get('/api/user', function (req, res) {
-    bdd.query('select * from user', function (error, results, fields) {
+app.get('/api/users', function (req, res) {
+       if(jwtVerifer({secret: secret})){
+         bdd.query('select * from user', function (error, results, fields) {
        if (error) return res.status(500).send("There was a problem finding the information to the database.");
        res.send(JSON.stringify(results));
-       res.end();
-     });
+       res.end(); 
+                    }); 
+       }else {
+        res.send("Please login at /api/login")
+       }        
  });
  
  app.get('/api/user/:id', function (req, res) {
-     bdd.query('select * from user where idname = ?',[req.params.id], function (error, results, fields) {
+     bdd.query('select * from bddpw.user where id_user = ?',[req.params.id], function (error, results, fields) {
         if (error) res.status(500).send("There was a problem finding the information about the user you want");
         res.send(JSON.stringify(results));
         res.end();
  
      });
   });
+
+  app.get('api/userid', function(req,res){
+      bdd.query('select id_user from user where user_name = ? and user_Firstname = ?',[req.body.user_name,req.body.user_firstname], function(error , results, fields){
+          iduser = results;      
+      })
+  })
  
   app.get('/api/user', function (req, res) {
-     bdd.query('select * from user where user_name = ? and user_mail = ?',[req.body.user_name, req.body.user_mail], function (error, results, fields) {
+     bdd.query('select user_mail , user_password, Id_profile from user where user_mail = ? and user_password = ? and Id_profile = ?',[req.body.user_mail, req.body.user_password,req.body.Id_profile], function (error, results, fields) {
         if (error) res.status(500).send("There was a problem finding the information about the user you want");
+        
         res.send(JSON.stringify(results));
         res.end();
  
@@ -252,7 +291,6 @@ app.get('/api/user', function (req, res) {
          res.status(500).send(err.message);
      }
  })
-
 
 
 
