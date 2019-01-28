@@ -77,10 +77,10 @@
 
                   <label for="Center"><b>Centre</b></label>
                   <select class="ins" name="Center" required>
-                      <option value="Arras">Arras</option>
-                      <option value="Lille">Lille</option>
-                      <option value="Reims">Reims</option>
-                      <option value="Strasbourg">Strasbourg</option>
+                      <option value="1">Arras</option>
+                      <option value="2">Lille</option>
+                      <option value="3">Reims</option>
+                      <option value="4">Strasbourg</option>
                   </select>
 
                   <label for="psw"><b>Password</b></label>

@@ -15,8 +15,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::post('/', function () {
-    return 'formulaire de '.$_POST['Name'];
+Route::post('/inscription',function() {
+
+	$user = DB::table('user')->insert(['user_name' => $_POST['Name'] , 'user_firstname' => $_POST['FName'], 'user_mail' => $_POST['E-mail'], 'user_password' => $_POST['psw'], 'Id_center' => $_POST['Center']]);
+
+    return view('welcome');
 });
 
 Route::get('/boite_idee', function () {
