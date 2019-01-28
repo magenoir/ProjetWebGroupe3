@@ -7,6 +7,5 @@
     </footer>
         <script type="text/javascript" src="js/responsive.js"></script>
         <script type="text/javascript" src="js/form.js"></script>
-        <script type="text/javascript" src="js/carousel.js"></script>
     </body>
 </html>

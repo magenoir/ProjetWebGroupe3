@@ -1,12 +1,80 @@
-.mySlides {
-	display:none;
+
+
+.slider {
+	margin:0;
+	position: relative;
+	width: 70%
+	height 0;
+	padding-bottom: 40%;
+	background: #4c4c4c;
+	border : solid 10px #2c2c2c;
 }
-.w3-left, .w3-right, .w3-badge {
-	cursor:pointer;
-	color: black;
+
+.slide {
+	position: absolute;
+	width: 100%;
+	height: 100%;
 }
-.w3-badge {
-	height:13px;
-	width:13px;
-	padding:0;
+
+.slide img{
+	width: 100%;
+	height: 100%;
+}
+
+#i1, #i2, #i3{
+	display: none;
+}
+
+.prec, .next{
+	width: 12%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	background:rgba(88,88,88,0.4);
+	z-index: 99;
+	cursor: pointer;
+}
+
+.prec{
+	left: 0;
+}
+
+.next{
+	right: 0;
+}
+
+.points{
+	width: 100%;
+	height: 11px;
+	bottom: 12%;
+	position: absolute;
+	text-align: center;
+	z-index: 99;
+}
+
+.dots{
+	top: -5px;
+	width: 18px;
+	height: 18px;
+	margin: 0 4px;
+	position: relative;
+	border-radius: 50%;
+	display: inline-block;
+	background : rgba(0,0,0,0.6);
+}
+
+.slide{
+	z-index: -1;
+}
+
+#i1:checked ~#un,
+#i2:checked ~#deux,
+#i3:checked ~#trois{
+	z-index: 9;
+}
+
+#i1:checked ~.points #dot1,
+#i2:checked ~.points #dot2,
+#i3:checked ~.points #dot3{
+	background: #fff;
 }

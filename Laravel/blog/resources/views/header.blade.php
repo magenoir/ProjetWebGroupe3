@@ -21,14 +21,12 @@
               <a href="/" class="active">
                 <img class="img" src="images/logo_cesi_1.png">
               </a>
-              <button class="button" onclick="document.getElementById('choice').style.display='block'" style="width:auto;">Connect</button>
-              <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
-            </div>
-            <div class="sidebar">
-              <a href="/">Actualités</a>
-              <a href="événement">Événements</a>
-              <a href="boite_idee">Boite a Idées</a>
-              <a href="boutique">Boutique</a>
+              @include('option_connect')
+              <a class="menu" href="/">Actualités</a>
+              <a class="menu" href="événement">Événements</a>
+              <a class="menu" href="boite_idee">Boite a Idées</a>
+              <a class="menu" href="boutique">Boutique</a>
+              <a href="javascript:void(0);" style="font-size:25px;" class="icon" onclick="myFunction()">&#9776;</a>
             </div>
             <div id="choice" class="modal">
                     <div class="container" style="background-color:#f1f1f1">
