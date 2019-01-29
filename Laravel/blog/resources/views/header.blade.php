@@ -1,10 +1,14 @@
+<?php
+// Start the session
+session_start();
+?>
 <!doctype html>
 <html>
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>SITE du BDE CESI</title>
+        <title>SITE du BDE CESI </title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
@@ -16,7 +20,6 @@
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     </head>
     <body>
-      
         <header>
             <div class="topnav" id="myTopnav">
               <a href="/" class="active">
@@ -33,10 +36,8 @@
               <a href="boutique">Boutique</a>
             </div>
             <div id="choice" class="modal">
-                    <div class="fcontainer">
-                      <span onclick="document.getElementById('choice').style.display='none'" class="close" title="Close Modal">&times;</span>
-                    </div>
                     <div class="container" style="background-color:#f1f1f1">
+                      <span onclick="document.getElementById('choice').style.display='none'" class="close" title="Close Modal">&times;</span>
                       <button type="button" onclick="document.getElementById('choice').style.display='none', document.getElementById('inscrit').style.display='block'" class="choicebtn">S'inscrire</button>
                     </div>
                     <div class="container" style="background-color:#f1f1f1">
@@ -45,17 +46,24 @@
             </div>
 
             <div id="connect" class="modal">
-              <form class="modal-content animate" method="GET" action="/">
+              <form class="modal-content animate" method="POST" action="{{route('Connection')}}">
+              @csrf
                 <div class="fcontainer">
-                  <span onclick="document.getElementById('connect').style.display='none'" class="close" title="Close Modal">&times;</span>
+                  <span onclick="document.getElementById('choice').style.display='none'" class="close" title="Close Modal">&times;</span>
                 </div>
                 <div class="container">
                   <label for="E-mail"><b>E-mail</b></label>
                   <input class="con" type="text" placeholder="Enter E-mail" name="E-mail" required>
 
                   <label for="psw"><b>Password</b></label>
-                  <input class="con" type="password" placeholder="Enter Password" name="psw" required>
-                    
+                  <input class="con" type="password" placeholder="Enter Password" name="psw2" required>
+
+                  <label for="Profile"><b>Profile</b></label>
+                  <select class="ins" name="Profile" required>
+                      <option value="1">Etudiant</option>
+                      <option value="2">Membre BDE</option>
+                      <option value="3">Salarié CESI</option>
+                  </select>
                   <button type="submit">Login</button>
                 </div>
                 <div class="container" style="background-color:#f1f1f1">
@@ -66,7 +74,7 @@
             </div>
 
             <div id="inscrit" class="modal">
-              <form class="modal-content animate" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+              <form class="modal-content animate" method="POST" action="">
                 @csrf
                 <div class="fcontainer">
                   <span onclick="document.getElementById('inscrit').style.display='none'" class="close" title="Close Modal">&times;</span>
@@ -78,6 +86,14 @@
                   <label for="FName"><b>First-Name</b></label>
                   <input class="ins" type="text" placeholder="Enter your Name" name="FName" required>
 
+                  <label for="Center"><b>Centre</b></label>
+                  <select class="ins" name="Center" required>
+                      <option value="1">Arras</option>
+                      <option value="2">Lille</option>
+                      <option value="3">Reims</option>
+                      <option value="4">Strasbourg</option>
+                  </select>
+
                   <label for="E-mail"><b>E-mail</b></label>
                   <input class="ins" type="text" placeholder="Enter E-mail" name="E-mail" required>
 
@@ -86,14 +102,13 @@
 
                   <label for="confpsw"><b>Confirm Password</b></label>
                   <input class="ins" type="password" placeholder="Confirm Password" name="confpsw" required>
-                    
+
                   <button type="submit" name="submit">Create</button>
                 </div>
                 <div class="container" style="background-color:#f1f1f1">
                   <button type="button" onclick="document.getElementById('inscrit').style.display='none', document.getElementById('choice').style.display='block'" class="cancelbtn">Cancel</button>
                 </div>
               </form>
-            </div>
-        </header>
-         
+            </div> 
+        </header>       
 <main>
