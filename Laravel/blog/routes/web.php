@@ -42,4 +42,9 @@ Route::get('/galerie', function () {
     return view('galerie');
 });
 
+Route::get('/mentions', function () {
+    return view('mentions_légales');
+});
+
+
 

@@ -33,6 +33,7 @@
               <a class="menu" href="galerie">Galerie</a>
               <a class="menu" href="boite_idee">Boite a Idées</a>
               <a class="menu" href="boutique">Boutique</a>
+              <a class="menu" href="mentions">Autres</a>
 
               <!-- hamburger -->
               <a href="javascript:void(0);" style="font-size:25px;" class="icon" onclick="myFunction()">&#9776;</a>
