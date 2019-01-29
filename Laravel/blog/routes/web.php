@@ -38,4 +38,8 @@ Route::get('/événement', function () {
     return view('evenement');
 });
 
+Route::get('/galerie', function () {
+    return view('galerie');
+});
+
 
