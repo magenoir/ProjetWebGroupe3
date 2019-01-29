@@ -12,17 +12,13 @@
                 <span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(3)"></span>
               </div>
             </div>
+        @foreach ($actus as $actue)
+        <div class="actu_container">
+        <p class="actu_Title">{{ $actue->event_name }}</p>
+        <p class="actu_description">{{ $actue->event_description }}</p>
+        <a href="" class="actu-picture"></a>
+        </div>
+          @endforeach
 
-
-            <div class="evenement">
-              <img src="images/evenement.jpg" alt="Avatar" style="width:90px">
-              <p><span>Événement 1</span>Lan CS GO</p>
-              <p>un tournois counter strike global offensive est organiser par Exia Lan.</p>
-            </div>
-            <div class="evenement">
-              <img src="images/evenement.jpg" alt="Avatar" style="width:90px">
-              <p><span>Événement 1</span>Lan CS GO</p>
-              <p>un tournois counter strike global offensive est organiser par Exia Lan.</p>
-            </div>
         
 @include('footer')
