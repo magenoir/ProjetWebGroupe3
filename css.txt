@@ -1,0 +1,43 @@
+/* Panier */
+
+@media screen and (max-width: 640px) {
+  table,
+  tbody,
+  tr,
+  td {
+    display: block;
+    width: auto!important;
+  }
+}
+
+.panier{
+  width: 100%;
+  border: 1px solid black;
+  border-collapse: collapse;
+  background-color: white;
+}
+
+.panier td{
+  border: 1px solid black;
+  background-color: white;
+}
+
+.panierth{
+  border: 1PX solid black;
+}
+
+.prix_panier{
+  border: 1px solid black;
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+}
+
+.prix_panier td{
+  border: 1px solid black;
+  background-color: white;
+}
+
+.prix_panierth{
+  border: 1PX solid black;
+}
