@@ -16,8 +16,16 @@ route::get('/',function(){
     $actus = DB::table('event')->where('id_status',7)->get();
     $connectUser4 = DB::table('center')->get();
     $centers = $connectUser4;
-    return view('welcome',compact('actus','centers')); 
+return view('welcome',compact('actus','centers')); 
 }); 
+
+route::get('/galerie',function(){
+      $actus = DB::table('event')->where('id_status',7)->get();
+      $connectUser4 = DB::table('center')->get();
+      $centers = $connectUser4;
+  return view('galerie',compact('actus','centers')); 
+});
+
 // Connection au site web
 route::post('/Connection',function(){
     
@@ -26,54 +34,96 @@ route::post('/Connection',function(){
     $connectUser3 = DB::table('user')->select('id_profile')->where('id_profile',$_POST['Profile'])->first();
     
     $_SESSION['user_mail'] = $connectUser->user_mail;
+    $mail = $connectUser->user_mail;
+    Session::put('mail',$mail);
+    $usermail = Session::get('mail');
     $_SESSION['user_password'] = $connectUser2->user_password;
     
     $actus = DB::table('event')->where('id_status',7)->get();
     $change = DB::table('user')->where('user_mail',$_SESSION['user_mail'])->update(['user_connection_status' => 1]);
-   return view('welcome2',compact('actus'));
+    $connectUser4 = DB::table('center')->get();
+      $centers = $connectUser4;
+   return view('welcome',compact('actus','centers','usermail'));
 })->name('Connection');
 
+// Commenter un événement
+Route::post('/commentaire',function(){
+
+    $events = DB::table('event')->where('id_status',7)->get();
+    $finduser = DB::table('user')->select('id_user')->where('user_mail', $_POST['E-mailc'])->first();
+    $commentinsert = DB::table('commenter')->insert([
+        ['comment'=>$_POST['Comm'],'id_user'=>$finduser->id_user,'id_event'=>3]
+    ]);
+    
+    $comments = DB::table('commenter')->select('comment')->get();
+    $connectUser4 = DB::table('center')->get();
+    $centers = $connectUser4;
+    $ideventcomment = DB::table('commenter')->join('event','commenter.id_event','=','event.id_event')->join('user','user.id_user','=','commenter.id_user')->get();
+    //$events = DB::table('event')->get();
+    //dd($event);
+    return view('événement',compact('comments','centers','ideventcomment','events'));
+    
+})->name('Commenter');
 
 // Accès à la page : boutique
 Route::get('/boutique', function () {
     $products = DB::table('product')->get();
     $connectUser4 = DB::table('center')->get();
     $centers = $connectUser4;
-   return view('boutique', compact('products','centers'));
+    $picture = DB::table('picture')->select('picture_root')->where('id_picture',2)->first();
+     
+
+    //dd($picture->picture_root);   
+   return view('boutique', compact('products','centers','picture'));
    
 });
+// Connection sur la page event
+Route::post('/evenement',function(){
+    $connectUser = DB::table('user')->select('user_mail')->where('user_mail',$_POST['E-mail'])->first();
+    $connectUser2 = DB::table('user')->select('user_password')->where('user_password',$_POST['psw2'])->first();
+    $connectUser3 = DB::table('user')->select('id_profile')->where('id_profile',$_POST['Profile'])->first();
+    
+    $_SESSION['user_mail'] = $connectUser->user_mail;
+    $_SESSION['user_password'] = $connectUser2->user_password;
 
-// // Fonctionnalité : commander un produit 
+    $events = DB::table('event')->get();/*->where('id_status',7)*/
+    //dd($events);
+    return view('evenement', compact('events'));
+    
+});
+
+// Fonctionnalité : commander un produit (ok mais absolument pas souhaité en cas réel)
 Route::post('/boutique', function () {
     $commanduser = DB::table('user')->select('id_user','user_mail')->where('user_mail',$_POST['E-mail'])->first();
     $idusercommand  =  $commanduser->id_user;
     $products = DB::table('product')->get();
     $commande = DB::table('command')->get();
-    $Quantite = DB::table('contenir')->insert([
-        ['id_product'=>$products->id_product,'id_command'=>$commande->id_command, 'quantité'=>1]
-    ]);
     $date = date("l jS \of F Y h:i:s A");
     $addcommand = DB::table('command')->insert(['command_time'=>$date,'id_user'=>$idusercommand,'id_status'=>3]);
+    
     return view('boutique', compact('products'));
 })->name('Commander');
 
-// Accès à la page : événement
+// Accès à la page : événement (ok)
 Route::get('/événement', function () {
+    
+    $centers = DB::table('center')->get();
     $events = DB::table('event')->where('id_status',7)->get();
-    $connectUser4 = DB::table('center')->get();
-    $centers = $connectUser4;
-    
-    
-     return view('événement', compact('events','centers'));
+    $commentaires = DB::table('commenter')->get();
+    $idCommentaires = DB::table('commenter')->select('id_user')->get();
+    $UserCommentaires = DB::table('user')->select('user_name')->where('user.id_user','commenter.id_user')->get();
+    $ideventcomment = DB::table('commenter')->join('event','commenter.id_event','=','event.id_event')->join('user','user.id_user','=','commenter.id_user')->get();
+    //dd($UserCommentaires);
+     return view('événement', compact('centers','events','commentaires','ideventcomment'));
 });
-// Accès à la page : boite idées
+// Accès à la page : boite idées (ok)
 Route::get('/boite_idee', function () {
     $ideas = DB::table('event')->where('id_status',4)->get();
     $connectUser4 = DB::table('center')->get();
     $centers = $connectUser4;
     return view('boite_idées',compact('ideas','centers'));
 });
-// Fonctionnalité : Ajout d'une idée
+// Fonctionnalité : Ajout d'une idée (ok)
 Route::post('/boite_idee', function(){
     
     $finduser = DB::table('user')->select('id_user')->where('user_mail', $_POST['E-mail'])->first();
@@ -81,7 +131,7 @@ Route::post('/boite_idee', function(){
     } else {
        $iduser = $finduser->id_user; 
         $addIdea = DB::table('event')->insert([
-        ['event_name'=>$_POST['eventname'],'event_description'=>$_POST['Desc'],'id_user'=>$iduser,'event_location'=> $_POST['Location'],'id_status'=>4]]);  
+        ['event_name'=>$_POST['event_name'],'event_description'=>$_POST['Desc'],'id_user'=>$iduser,'event_location'=> $_POST['Location'],'id_status'=>4,'event_date'=>$_POST['date']]]);  
     }
     $image = DB::table('picture')->insert([
         ['picture_root'=>$_POST['Image'],'id_user'=>$iduser ]
@@ -90,13 +140,9 @@ Route::post('/boite_idee', function(){
     return view('boite_idées',compact('ideas'));  
 })->name('Poster');
 
-// Fonctionnalité : Inscription
+// Fonctionnalité : Inscription (ok)
 Route::post('/Inscription', function () {
-    $addusers = DB::table('user')->insert(
-        ['user_name' => $_POST['Name'],'user_firstname' =>$_POST['FName'],'user_mail'=>$_POST['E-mail'],'user_password'=>$_POST['psw'],'Id_center'=> $_POST['Center'],]
-        
-    );
-   // $_SESSION['user'] = $_POST['E-mail'];
+   UserTableSeeder::run();
    $actus = DB::table('event')->where('id_status',7)->get();
    $connectUser4 = DB::table('center')->get();
    $centers = $connectUser4;
