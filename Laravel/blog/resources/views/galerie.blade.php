@@ -56,15 +56,43 @@ else {
 
 <!-- formulaire pour ajouter une photo -->
 <div>
-	<form class="modal-content animate" method="post" action="/galerie">
+	<form class="modal-content animate" method="post" action="uploadImg.php" enctype="multipart/form-data">
         <div class="container">
             <label for="photo"><b>Publier une photo</b></label>
-            <input class="ins" type="file" placeholder="choisir votre fichier" name="photo" required>
-                    
+            <input class="ins" type="file" placeholder="choisir votre fichier" name="photo" required>      
             <input type="submit" name="envois" placeholder="envoyer">
         </div>
     </form>
 </div>
+
+<?php
+
+if(isset($_POST) && !empty($_POST)){
+    if ($_FILES['photo']['error'] == 0) {
+
+      if ($_FILES['photo']['size'] > 2000000) {
+        $error = "votre image est trop lourde";
+        echo $error;
+      }
+
+      $extension = strrchr($_FILES['photo']['name'], '.');
+      if ($extension =! ('.jpg' || '.png')) {
+        $error = "votre image n'est pas conforme.";
+        echo $error;
+      }
+
+      if (!isset($error)) {
+        move_uploaded_file($_FILES['photo']['tmp_name'], 'images/min/'.$_FILES['photo']['name']);
+      }
+
+    }
+    else{
+      $error = 'problème de formulaire';
+      echo $error;
+    }
+  }
+
+?>
 
 
 

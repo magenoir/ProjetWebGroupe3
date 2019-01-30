@@ -42,7 +42,9 @@ Route::get('/galerie', function () {
     return view('galerie');
 });
 
-Route::post('/galerie', ['as'=>'galerie','uses'=>'HomeController@galerie']);
+Route::post('/galerie', function () {
+    return view('/galerie');
+});
 
 Route::get('/mentions', function () {
     return view('mentions_légales');
