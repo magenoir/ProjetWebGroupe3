@@ -50,8 +50,8 @@ Route::get('/mentions', function () {
     return view('mentions_légales');
 });
 
-Route::get('/inscrit', function () {
-    return view('inscrit');
+Route::get('/panier', function () {
+    return view('panier');
 });
 
 

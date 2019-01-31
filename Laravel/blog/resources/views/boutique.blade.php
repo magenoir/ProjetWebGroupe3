@@ -1,5 +1,12 @@
 @include('header')
+<?php
 
+  $select = array(); 
+  $select['id'] = "phlevis501"; /*$_get['id_command*/
+  $select['qnt'] = 2; /*$_get['nb_command*/
+  $select['prix'] = 84.95; /*$_get['prix*/
+
+?>
 
 <div class="tablo"> 
   <div class="coltablo">
@@ -7,8 +14,8 @@
       <div class="colonne">
         <div class="contenu">
           <img src="images/goodies 1.jpg">
-          <h4>Carnet</h4>
-          <p>prix : 150€ 
+          <h4><?php echo $select['id'];?></h4>
+          <p><?php echo $select['prix'];?>€
             <a href="">
               <img src="images/panier icon.png" style="width: 20px;height: 20px">
             </a>
@@ -20,8 +27,8 @@
       <div class="colonne">
         <div class="contenu">
           <img src="images/veste.png">
-          <h4>Carnet</h4>
-          <p>prix : 150€ 
+          <h4><?php echo $select['id'];?></h4>
+          <p><?php echo $select['prix'];?>€
             <a href="">
               <img src="images/panier icon.png" style="width: 20px;height: 20px">
             </a>

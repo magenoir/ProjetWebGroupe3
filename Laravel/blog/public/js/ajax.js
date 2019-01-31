@@ -2,13 +2,13 @@ function getliste() {
 	 var xmlhttp = new XMLHttpRequest();
 	 xmlhttp.onreadystatechange = function() {
 	    if (this.readyState == 4 && this.status == 200) {
-	      myFunction(this);
+	      myfunction(this);
 	    }
 	  };
 	  xmlhttp.open("GET", "liste_inscrit.xml", true);
 	  xmlhttp.send();
 	}
-function myFunction(xml) {
+function myfunction(xml) {
 	  var i;
 	  var xmlDoc = xml.responseXML;
 	  var table="<tr><th>Nom</th><th>Mail</th></tr>";
