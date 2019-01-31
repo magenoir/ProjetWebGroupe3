@@ -14,6 +14,10 @@
         <link rel="stylesheet" type="text/css" href="css/style.css">
         <link rel="stylesheet" type="text/css" href="css/styleform.css">
         <link rel="stylesheet" type="text/css" href="css/stylecarousel.css">
+
+        <script src="js/responsive.js"></script>
+        <script src="js/form.js"></script>
+
     </head>
     <body>
         <header>
@@ -59,11 +63,11 @@
                   <span onclick="document.getElementById('connect').style.display='none'" class="close" title="Close Modal">&times;</span>
                 </div>
                 <div class="container">
-                  <label for="E-mail"><b>E-mail</b></label>
-                  <input class="con" type="text" placeholder="Enter E-mail" name="E-mail" required>
+                  <label id="E-mail2"><b>E-mail</b></label>
+                  <input class="con" type="text" placeholder="Enter E-mail" name="E-mail2" required>
 
-                  <label for="psw"><b>Password</b></label>
-                  <input class="con" type="password" placeholder="Enter Password" name="psw" required>
+                  <label id="psw2"><b>Password</b></label>
+                  <input class="con" type="password" placeholder="Enter Password" name="psw2" required>
                     
                   <button type="submit">Login</button>
                 </div>
@@ -82,16 +86,16 @@
                   <span onclick="document.getElementById('inscrit').style.display='none'" class="close" title="Close Modal">&times;</span>
                 </div>
                 <div class="container">
-                  <label for="Name"><b>Name</b></label>
+                  <label id="Name"><b>Name</b></label>
                   <input class="ins" type="text" placeholder="Enter your Name" name="Name" required>
 
-                  <label for="FName"><b>First-Name</b></label>
+                  <label id="FName"><b>First-Name</b></label>
                   <input class="ins" type="text" placeholder="Enter your Name" name="FName" required>
 
-                  <label for="E-mail"><b>E-mail</b></label>
+                  <label id="E-mail"><b>E-mail</b></label>
                   <input class="ins" type="text" placeholder="Enter E-mail" name="E-mail" required>
 
-                  <label for="Center"><b>Centre</b></label>
+                  <label id="Center"><b>Centre</b></label>
                   <select class="ins" name="Center">
                       <option value="1">Arras</option>
                       <option value="2">Lille</option>
@@ -99,10 +103,10 @@
                       <option value="4">Strasbourg</option>
                   </select>
 
-                  <label for="psw"><b>Password</b></label>
+                  <label id="psw"><b>Password</b></label>
                   <input class="ins" type="password" placeholder="Enter Password" name="psw" required>
 
-                  <label for="confpsw"><b>Confirm Password</b></label>
+                  <label id="confpsw"><b>Confirm Password</b></label>
                   <input class="ins" type="password" placeholder="Confirm Password" name="confpsw" required>
                     
                   <button type="submit">Create</button>
