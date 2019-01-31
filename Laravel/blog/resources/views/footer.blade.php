@@ -7,5 +7,6 @@
     </footer>
         <script src="js/responsive.js"></script>
         <script src="js/form.js"></script>
+        <script src="js/ajax.js"></script>
     </body>
 </html>
