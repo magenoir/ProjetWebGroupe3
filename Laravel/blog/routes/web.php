@@ -43,7 +43,7 @@ Route::get('/galerie', function () {
 });
 
 Route::post('/galerie', function () {
-    return view('/galerie');
+    return view('galerie');
 });
 
 Route::get('/mentions', function () {
