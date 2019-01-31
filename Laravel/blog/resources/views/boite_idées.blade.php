@@ -20,11 +20,11 @@
 
 @foreach ($ideas as $idea)
 <div class="evenement">
-	<img src="images/evenement.jpg" alt="Avatar" > 
-	<p><span>{{$idea->event_name}}</span></p>
+	<img class="info" src="images/evenement.jpg" alt="Avatar" >
+	<p><span>Événement :</span>{{$idea->event_name}}</p>
 	<p>{{$idea->event_description}}</p>
+	<img src="images/like.png" style="width: 50px;height: 50px;" alt="Image15">
 </div>
 @endforeach
-
 
 @include('footer')
